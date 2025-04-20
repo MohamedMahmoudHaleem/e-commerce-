@@ -3,7 +3,6 @@ import { CartContextType, CartItem } from "../types/types";
 
 type CartState = {
   cartItems: CartItem[];
-  
 };
 
 type CartAction =
@@ -45,9 +44,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
 const CART_STORAGE_KEY = "ecommerce_cart";
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(cartReducer, { cartItems: [] });
 
   useEffect(() => {

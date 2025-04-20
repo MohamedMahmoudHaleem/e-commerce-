@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../../hooks/useCart";
 
-const CartIcon: React.FC = () => {
+const CartIcon = () => {
   const { cartItemCount } = useCart();
 
   return (
