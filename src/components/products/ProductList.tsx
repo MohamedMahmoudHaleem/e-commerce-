@@ -1,16 +1,14 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDebounce } from "../../hooks/useDebounce";
 import { fetchCategories, fetchProducts } from "../../services/api";
 import ErrorMessage from "../common/ErrorMessage";
 import LoadingSpinner from "../common/LoadingSpinner";
 import ProductGrid from "./ProductGrid";
 
-const ProductList: React.FC = () => {
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const [selectedCategory, setSelectedCategory] = React.useState<number | null>(
-    null
-  );
+const ProductList = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
   // Fetch categories
@@ -44,7 +42,7 @@ const ProductList: React.FC = () => {
   });
 
   // Infinite scroll handler
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const scrollPosition =
         window.innerHeight + document.documentElement.scrollTop;
@@ -123,9 +121,9 @@ const ProductList: React.FC = () => {
 
       {/* Product Grid */}
       {data?.pages.map((page, i) => (
-        <React.Fragment key={i}>
+        <Fragment key={i}>
           <ProductGrid products={page} />
-        </React.Fragment>
+        </Fragment>
       ))}
 
       {/* Loading and empty states */}

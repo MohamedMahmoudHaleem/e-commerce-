@@ -1,8 +1,8 @@
-import React from 'react';
-import { useCart } from '../../hooks/useCart';
-import CartItem from './CartItem';
+import React from "react";
+import { useCart } from "../../hooks/useCart";
+import CartItem from "./CartItem";
 
-const CartSummary: React.FC = () => {
+const CartSummary = () => {
   const { cartItems, cartTotal, clearCart } = useCart();
 
   if (cartItems.length === 0) {
@@ -12,7 +12,7 @@ const CartSummary: React.FC = () => {
   return (
     <div className="mt-4">
       <div className="space-y-4">
-        {cartItems.map(item => (
+        {cartItems.map((item) => (
           <CartItem key={`${item.id}-${item.quantity}`} item={item} />
         ))}
       </div>
